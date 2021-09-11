@@ -1,7 +1,7 @@
-// Get DOM elements
-const testHolder = document.getElementById('test-holder');
+// Get DOM elements //
+const errorHolder = document.getElementById('error-holder');
 
-// create and open AJAX request
+// create and open AJAX request //
 let apiRequest = new XMLHttpRequest();
 
 apiRequest.open('GET', 'http://localhost:3000/api/cameras/');
@@ -11,55 +11,55 @@ apiRequest.send();
 apiRequest.onreadystatechange = () => {
     if(apiRequest.readyState === 4) {
         if(apiRequest.status === 404) {
-            return testHolder.textContent = 'error during Get';
+            return errorHolder.textContent = 'Error 404. not found';
         }
         const CAMERAS = JSON.parse(apiRequest.response);
         console.log(CAMERAS);
         
         
         for (let item in CAMERAS) {
+            //Create Camera Card //
             let cameraCardCol = document.createElement('div');
-            cameraCardCol.classList.add('col-12', 'col-lg-4');
             document.querySelector('.all-camera').appendChild(cameraCardCol);
 
             let cameraCard = document.createElement('div');
             cameraCardCol.appendChild(cameraCard);
-            cameraCard.classList.add('card', 'mb-4', 'mb-lg-0', 'border-light', 'shadow-sm');
 
-            //Camera image 
+            //Add Camera image //
             let cameraImg = document.createElement('img');
             cameraCard.appendChild(cameraImg);
             cameraImg.src= CAMERAS[item].imageUrl;
 
-            //Camera details 
-            let cameraCardDetails = document.createElement('div');
-            cameraCard.appendChild(cameraCardDetails);
-            cameraCardDetails.classList.add('card-body');
+            //Add Camera details //
+            let cameraCardBody = document.createElement('div');
+            cameraCard.appendChild(cameraCardBody);
 
+            //Add Camera elements //
             let cameraCardName = document.createElement('h5');
             let cameraCardText = document.createElement('p');
             let cameraCardPrice = document.createElement('p');
             let cameraCardButton = document.createElement('a');
             let cameraId = CAMERAS[item]._id;
 
-            cameraCardDetails.appendChild(cameraCardName);
-            cameraCardDetails.appendChild(cameraCardText);
-            cameraCardDetails.appendChild(cameraCardPrice);
-            cameraCardDetails.appendChild(cameraCardButton);
+            cameraCardBody.appendChild(cameraCardName);
+            cameraCardBody.appendChild(cameraCardText);
+            cameraCardBody.appendChild(cameraCardPrice);
+            cameraCardBody.appendChild(cameraCardButton);
 
+            //Iterate//            
+            cameraCardName.textContent = CAMERAS[item].name;
+            cameraCardText.textContent = CAMERAS[item].description;
+            cameraCardPrice.textContent = (CAMERAS[item].price/100) + ' EUR';
+            cameraCardButton.textContent = 'En savoir plus';
+
+            //Apply Bootstrap classes//
+            cameraCardCol.classList.add('col-12', 'col-lg-4','mt-4');
+            cameraCard.classList.add('card', 'mb-4', 'mb-lg-0', 'border-light', 'shadow-sm');
+            cameraCardBody.classList.add('card-body');
             cameraCardName.classList.add('card-title');
             cameraCardText.classList.add('card-text');
             cameraCardPrice.classList.add('card-text');
             cameraCardButton.classList.add('btn', 'btn-primary', 'stretched-link');
-
-            cameraCardName.textContent = CAMERAS[item].name;
-            cameraCardText.textContent = CAMERAS[item].description;
-            cameraCardPrice.textContent = (CAMERAS[item].price/100) + ' euros';
-
-            cameraCardButton.textContent = 'En savoir plus';
-
-
-
         }
     }
 };
