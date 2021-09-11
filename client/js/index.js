@@ -51,6 +51,8 @@ apiRequest.onreadystatechange = () => {
             cameraCardText.textContent = CAMERAS[item].description;
             cameraCardPrice.textContent = (CAMERAS[item].price/100) + ' EUR';
             cameraCardButton.textContent = 'En savoir plus';
+            cameraCardButton.href = `produit.html?id=${cameraId}`;
+            
 
             //Apply Bootstrap classes//
             cameraCardCol.classList.add('col-12', 'col-lg-4','mt-4');
