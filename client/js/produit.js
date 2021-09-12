@@ -21,7 +21,6 @@ apiRequest.onreadystatechange = () => {
             return errorHolder.textContent = 'Error 404. not found';
         }
         const cameraProduct= JSON.parse(apiRequest.response);
-        console.log(cameraProduct);
 
         //Create Camera Card //
         let cameraCardCol = document.createElement('div');
@@ -35,7 +34,6 @@ apiRequest.onreadystatechange = () => {
         cameraCard.appendChild(cameraImg);
         cameraImg.src= cameraProduct.imageUrl;
 
-
         //Add Camera details //
         let cameraCardBody = document.createElement('div');
         cameraCard.appendChild(cameraCardBody);
@@ -44,8 +42,8 @@ apiRequest.onreadystatechange = () => {
         let cameraCardName = document.createElement('h5');
         let cameraCardText = document.createElement('p');
         let cameraCardPrice = document.createElement('p');
-        let cameraCardButton = document.createElement('a');
         let cameraCardLenses = document.createElement('div');
+        let cameraCardButton = document.createElement('a');
 
         cameraCardBody.appendChild(cameraCardName);
         cameraCardBody.appendChild(cameraCardText);
@@ -56,13 +54,25 @@ apiRequest.onreadystatechange = () => {
         cameraCardName.textContent = cameraProduct.name;
         cameraCardText.textContent = cameraProduct.description;
         cameraCardPrice.textContent = (cameraProduct.price/100) + ' EUR';
-        
-        cameraCardLenses.textContent = cameraProduct.lenses;
-        console.log(cameraCardLenses);
-        
         cameraCardButton.textContent = 'Ajouter au panier';
         cameraCardButton.href = 'panier.html';
-     
+        
+        //Dropdown Menu for Lenses //
+        let lensLabel = document.createElement('label');
+        let lensSelect = document.createElement('select');
+
+        lensLabel.innerText='Available lens options: '
+
+        cameraCardLenses.appendChild(lensLabel);
+        cameraCardLenses.appendChild(lensSelect);       
+
+        //Lense Options //
+        const tabLenses= cameraProduct.lenses;
+        for (let i=0; i<tabLenses.length; i+=1){
+            let lensOption = document.createElement("option");
+            lensOption.innerText = tabLenses[i];
+            lensSelect.appendChild(lensOption);
+        };     
 
         //Apply Bootstrap classes//
         cameraCardCol.classList.add('col-12', 'col-lg-6','mt-4');
@@ -72,38 +82,11 @@ apiRequest.onreadystatechange = () => {
         cameraCardText.classList.add('card-text');
         cameraCardPrice.classList.add('card-text');
         cameraCardLenses.classList.add('form-group');
+        lensSelect.classList.add('form-control')
         cameraCardButton.classList.add('btn', 'btn-primary','mt-4');
 
-      
-        /*DropDown menu//
-        lenses = cameraProduct.lenses;
-        console.log(lenses);
 
 
-        let lensDiv = document.createElement('div');
-        document.querySelector('.product_camera').appendChild(lensDiv);
-
-        let lensForm = document.createElement('form');
-        let lensFG = document.createElement('div');
-        let lensLabel = document.createElement('label');
-        let lensSelect = document.createElement('select');
-        let lensOption = document.createElement('option');
-
-        lensDiv.appendChild(lensForm);
-        lensDiv.appendChild(lensFG);
-        lensDiv.appendChild(lensLabel);
-        lensDiv.appendChild(lensSelect);
-        lensDiv.appendChild(lensOption);
-
-        lensOption.textContent = 'Option';
-
-        lensDiv.classList.add('col-12', 'col-lg-4','mt-4');
-        lensDiv.textContent = 'Lenses';
-
-        lensFG.classList.add('form-group');
-        lensLabel.textContent='You can use the following lenses :';
-        lensSelect.classList.add('form-control')
-        */
 
 
    }
