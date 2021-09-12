@@ -4,10 +4,6 @@ let params = new URLSearchParams(window.location.search);
 let product_id= params.get('id');
 console.log(product_id);
 
-
-
-
-
 // create and open AJAX request //
 let apiRequest = new XMLHttpRequest();
 
@@ -61,7 +57,7 @@ apiRequest.onreadystatechange = () => {
         let lensLabel = document.createElement('label');
         let lensSelect = document.createElement('select');
 
-        lensLabel.innerText='Available lens options: '
+        lensLabel.innerText='Objectifs disponible: '
 
         cameraCardLenses.appendChild(lensLabel);
         cameraCardLenses.appendChild(lensSelect);       
