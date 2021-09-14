@@ -51,7 +51,7 @@ apiRequest.onreadystatechange = () => {
         cameraCardText.textContent = cameraProduct.description;
         cameraCardPrice.textContent = (cameraProduct.price/100) + ' EUR';
         cameraCardButton.textContent = 'Ajouter au panier';
-        cameraCardButton.href = 'panier.html';
+        cameraCardButton.href = '#';
         
         //Dropdown Menu for Lenses //
         let lensLabel = document.createElement('label');
@@ -81,9 +81,20 @@ apiRequest.onreadystatechange = () => {
         lensSelect.classList.add('form-control')
         cameraCardButton.classList.add('btn', 'btn-primary','mt-4');
 
+        //Add to localStorage//
+        cameraCardButton.addEventListener('click',()=>{
+            const key= cameraProduct.name;
+            const value= cameraProduct.price/100;
 
-
-
+            console.log(key);
+            console.log(value);
+            localStorage.setItem(key,value);
+            
+            // 
+            // note  add prompt or message when clicked
+            //
+        }
+        );
 
    }
 };
