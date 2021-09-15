@@ -2,13 +2,19 @@
 
 let params = new URLSearchParams(window.location.search);
 let product_id= params.get('id');
-console.log(product_id);
+
+
+let orderTable =[];
+let orderedObject;
+let getItemInLS;
+
 
 // create and open AJAX request //
 let apiRequest = new XMLHttpRequest();
 
 apiRequest.open('GET', 'http://localhost:3000/api/cameras/'+ product_id);
 apiRequest.send();
+
 
 // capture
 apiRequest.onreadystatechange = () => {
@@ -79,22 +85,25 @@ apiRequest.onreadystatechange = () => {
         cameraCardPrice.classList.add('card-text');
         cameraCardLenses.classList.add('form-group');
         lensSelect.classList.add('form-control')
-        cameraCardButton.classList.add('btn', 'btn-primary','mt-4');
+        cameraCardButton.classList.add('add-cart','btn', 'btn-secondary','mt-4');
 
         //Add to localStorage//
-        cameraCardButton.addEventListener('click',()=>{
-            const key= cameraProduct.name;
-            const value= cameraProduct.price/100;
+        cameraCardButton.addEventListener('click',   ()=>  {
+                        
+            orderedObject = {
+                objectName: cameraProduct.name,
+                objectPrice: cameraProduct.price/100
+            };
 
-            console.log(key);
-            console.log(value);
-            localStorage.setItem(key,value);
+            orderTable.push(orderedObject);            
+            console.log(orderTable);
             
-            // 
-            // note  add prompt or message when clicked
-            //
+            localStorage.setItem('basketItem', JSON.stringify(orderTable) );
+
         }
         );
+        
 
    }
 };
+
