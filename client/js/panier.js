@@ -1,4 +1,5 @@
- //console.log('hello2');//
+ /*/
+ //   THIS PAGE IS UNDER TEST
 
 
 
@@ -15,6 +16,7 @@ document.getElementById("removeItem").addEventListener('click',()=>{
     document.getElementById("demo2").innerHTML = "Item is removed";
 }
 );
+*/ 
 
 
 // Remmove all items

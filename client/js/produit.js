@@ -6,7 +6,7 @@ let product_id= params.get('id');
 
 let orderTable =[];
 let orderedObject;
-let getItemInLS;
+
 
 
 // create and open AJAX request //
@@ -87,23 +87,29 @@ apiRequest.onreadystatechange = () => {
         lensSelect.classList.add('form-control')
         cameraCardButton.classList.add('add-cart','btn', 'btn-secondary','mt-4');
 
-        //Add to localStorage//
+            //On click, Add to localStorage//
         cameraCardButton.addEventListener('click',   ()=>  {
-                        
             orderedObject = {
                 objectName: cameraProduct.name,
                 objectPrice: cameraProduct.price/100
             };
+                
+            // Check and add item to Local Storage
+            if (localStorage.getItem('basketItem') !== null) {
+                orderTable = JSON.parse(localStorage.getItem('basketItem')); 
+                
+            } 
+                
+            orderTable.push(orderedObject);
+            localStorage.setItem('basketItem', JSON.stringify(orderTable));
+                
 
-            orderTable.push(orderedObject);            
-            console.log(orderTable);
-            
-            localStorage.setItem('basketItem', JSON.stringify(orderTable) );
 
-        }
+
+            }
         );
         
-
    }
 };
+
 
