@@ -41,11 +41,32 @@ if (localStorage.getItem('basketItem') == null) {
     totalItems.innerHTML='total Items: ' + orderTable.length;
 }
  
-console.log(orderTable);
+
 // Display in the table
 
+  
+for (let i in orderTable){
+    
+    document.getElementById('order-body').appendChild(document.createElement('tr')).innerHTML=
+    `   <th scope="row">${orderTable[i].name}</th>
+        <td>${orderTable[i].lense}</td>
+        <td>${orderTable[i].price} Euros</td>   `;
+}
 
-//let displayOrders= document.getElementById('cartItems')
-//displayOrders.innerHTML=orderTable[0].objectName;
+
+  
+
+    
 
 
+/*
+
+document.innerHTML=
+`
+<th scope="row">${orderTable[i].count}</th>
+<td>${orderTable[i].name}</td>
+<td>${orderTable[i].lense}</td>
+<td>${orderTable[i].price}</td>
+
+`;
+*/

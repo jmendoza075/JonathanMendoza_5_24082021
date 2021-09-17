@@ -38,44 +38,30 @@
     <main class="container">
         <div class="row mt-5">
             <div class="col">
-                <h1>Panier This page is under TEST</h1>
-                             
-                <div id="cartItems">Cart items</div>
-                <div id="totalItems">Total items</div>  
-
+                <h1>Panier</h1>
             </div>
         </div>
 
-        <table class="table table-hover">
+        <table class="table table-striped table-bordered mt-5">
             <thead>
               <tr>
-                <th scope="col">#</th>
-                <th scope="col">First</th>
-                <th scope="col">Last</th>
-                <th scope="col">Handle</th>
+                <th scope="col">Camera</th>
+                <th scope="col">Objectif</th>
+                <th scope="col">Prix</th>
               </tr>
             </thead>
-            <tbody>
-              <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-              </tr>
-              <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-              </tr>
-              <tr>
-                <th scope="row">3</th>
-                <td colspan="2">Larry the Bird</td>
-                <td>@twitter</td>
-              </tr>
+            <tbody id="order-body">
+                <!-- orders here 
+                    <tr >
+                        <th scope="row">#</th>
+                        <td>Cam1</td>
+                        <td>50mm</td>
+                        <td>10euro</td>
+                    </tr>
+                -->
             </tbody>
           </table>
-
+          <div id="totalItems">Total items</div>  
           <button class="add-cart" id="addItem">add Click</button>
           <button id="removeItem"> remove Click </button>
           <button id="removeAll"> remove ALL Click </button>
