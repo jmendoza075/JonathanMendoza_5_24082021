@@ -62,11 +62,13 @@ apiRequest.onreadystatechange = () => {
         //Dropdown Menu for Lenses //
         let lensLabel = document.createElement('label');
         let lensSelect = document.createElement('select');
+        
 
         lensLabel.innerText='Objectifs disponible: '
 
         cameraCardLenses.appendChild(lensLabel);
-        cameraCardLenses.appendChild(lensSelect);       
+        cameraCardLenses.appendChild(lensSelect);     
+         
 
         //Lense Options //
         const tabLenses= cameraProduct.lenses;
@@ -75,6 +77,14 @@ apiRequest.onreadystatechange = () => {
             lensOption.innerText = tabLenses[i];
             lensSelect.appendChild(lensOption);
         };     
+
+        //Lens select//
+        
+        const lensDropdown = document.querySelector('select');
+        lensChoice= lensDropdown.value;         //applies default choice
+        lensDropdown.addEventListener('change',($event) =>{
+            lensChoice= $event.target.value;
+        });
 
         //Apply Bootstrap classes//
         cameraCardCol.classList.add('col-12', 'col-lg-6','mt-4');
@@ -87,25 +97,30 @@ apiRequest.onreadystatechange = () => {
         lensSelect.classList.add('form-control')
         cameraCardButton.classList.add('add-cart','btn', 'btn-secondary','mt-4');
 
-            //On click, Add to localStorage//
+
+
+        //On click, Add to localStorage//
+        
         cameraCardButton.addEventListener('click',   ()=>  {
             orderedObject = {
-                objectName: cameraProduct.name,
-                objectPrice: cameraProduct.price/100
+                name: cameraProduct.name,
+                price: cameraProduct.price/100,
+                basePrice:cameraProduct.price/100,
+                count: 1,
+                lense: lensChoice
             };
-                
+            console.log(orderedObject);
+
             // Check and add item to Local Storage
             if (localStorage.getItem('basketItem') !== null) {
                 orderTable = JSON.parse(localStorage.getItem('basketItem')); 
-                
             } 
-                
+              
+            
             orderTable.push(orderedObject);
+            
             localStorage.setItem('basketItem', JSON.stringify(orderTable));
                 
-
-
-
             }
         );
         
