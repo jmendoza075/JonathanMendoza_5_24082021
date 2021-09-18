@@ -14,9 +14,7 @@ apiRequest.onreadystatechange = () => {
             return errorHolder.textContent = 'Error 404. not found';
         }
         const CAMERAS = JSON.parse(apiRequest.response);
-        console.log(CAMERAS);
- 
-        
+                
         for (let item in CAMERAS) {
             //Create Camera Card //
             let cameraCardCol = document.createElement('div');

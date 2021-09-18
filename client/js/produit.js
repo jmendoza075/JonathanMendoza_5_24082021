@@ -128,7 +128,6 @@ apiRequest.onreadystatechange = () => {
             
             
             localStorage.setItem('basketItem', JSON.stringify(orderTable));
-            console.log(orderTable);   
             
             }
             
