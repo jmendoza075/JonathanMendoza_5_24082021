@@ -9,6 +9,7 @@ let orderedObject;
 
 
 
+
 //hide message: successful add to cart   
 $('#add-success').hide();
 
@@ -123,13 +124,16 @@ apiRequest.onreadystatechange = () => {
             orderTable.push(orderedObject);
             //show message add successful
             $('#add-success').show();
+
+            
             
             localStorage.setItem('basketItem', JSON.stringify(orderTable));
-                
+            console.log(orderTable);   
+            
             }
+            
         );
-        
+       
    }
 };
-
 
