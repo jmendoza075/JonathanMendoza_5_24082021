@@ -1,17 +1,20 @@
 
 // Recover items in Local Storage
 orderTable = JSON.parse(localStorage.getItem('basketItem')); 
+
 ////addd if empty here
 if (localStorage.getItem('basketItem') == null) {
    alert('basket is empty');
 } else{
     orderTable = JSON.parse(localStorage.getItem('basketItem')); 
     let totalItems= document.getElementById('totalItems')
-    totalItems.innerHTML='Total Items: ' + orderTable.length;
+    totalItems.innerHTML='total Items: ' + orderTable.length;
 }
  
 
-// Display items in the table  
+// Display in the table
+
+function displayCart (){
 for (let i in orderTable){
     
     document.getElementById('order-body').appendChild(document.createElement('tr')).innerHTML=
@@ -20,7 +23,7 @@ for (let i in orderTable){
         <td>${orderTable[i].price} Euros</td>   `;
 }
 
-
+}  
 
 // Remmove all items
 document.getElementById("removeAll").addEventListener('click',()=>{
@@ -29,29 +32,18 @@ document.getElementById("removeAll").addEventListener('click',()=>{
     let storageCount= localStorage.length
     
     if (storageCount > 0) {
-       localStorage.clear();
-       orderTable=[]; 
+       localStorage.clear(); 
+       orderTable=[];
+       console.log(orderTable);
        location.reload();
+       
      
-
-       document.getElementById("demo3").innerHTML = "ALL removed"; 
     }else{
-        document.getElementById("demo3").innerHTML = "no record to remove"; 
+        document.getElementById("all-removed").innerHTML = "no record to remove"; 
     };
 }
 );
 
-  
-/* Buttons Add and Remve Item
-document.getElementById("addItem").addEventListener('click',()=>{
 
-    document.getElementById("demo1").innerHTML = "Item is added";
-}
-);
-
-document.getElementById("removeItem").addEventListener('click',()=>{
-
-    document.getElementById("demo2").innerHTML = "Item is removed";
-}
-);
-*/
+/// cart total items
+document.getElementById('totalCartItems').innerText=orderTable.length;

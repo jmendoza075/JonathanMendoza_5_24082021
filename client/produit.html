@@ -25,8 +25,10 @@
                                 <a class="nav-link" href="index.html">Accueil</a>
                             </li>
                             <li class="nav-item active">
-                                <a class="nav-link" href="panier.html">Panier</a>
+                                <a class="nav-link btn-outline-secondary" href="panier.html">
+                                    Panier <span id="totalCartItems" class="badge badge-light">0</span></a>                      
                             </li>
+                            
                         </ul>
                     </div>
                 </nav>
@@ -41,9 +43,14 @@
             <div class="col">
                 <h2>Détails du produit: </h2>
             </div>
+            <div class="alert alert-success" id="add-success" role="alert">
+                Votre camera est ajouté au panier.
+            </div>
         </div>
 
         <div class="row product_camera"></div>
+        
+
     </main>
 
     <!-- Footer -->

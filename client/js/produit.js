@@ -9,6 +9,9 @@ let orderedObject;
 
 
 
+//hide message: successful add to cart   
+$('#add-success').hide();
+
 // create and open AJAX request //
 let apiRequest = new XMLHttpRequest();
 
@@ -109,7 +112,7 @@ apiRequest.onreadystatechange = () => {
                 count: 1,
                 lense: lensChoice
             };
-            console.log(orderedObject);
+            
 
             // Check and add item to Local Storage
             if (localStorage.getItem('basketItem') !== null) {
@@ -118,6 +121,8 @@ apiRequest.onreadystatechange = () => {
               
             
             orderTable.push(orderedObject);
+            //show message add successful
+            $('#add-success').show();
             
             localStorage.setItem('basketItem', JSON.stringify(orderTable));
                 
