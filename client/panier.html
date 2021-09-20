@@ -63,43 +63,64 @@
           </table>
           <div id="totalItems"></div>  
           <div id="totalPrice"></div>  
-          <button id="removeAll"> Remove ALL </button>
+          <button type="button" id="removeAll"  class="btn btn-secondary">Tout Supprimer</button>
+          
 
           
         <div class="row mt-5">
             <div class="col">
                 <h2>Contacts</h2>
                               
-                <form>
+                <form id="cartForm">
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="nom">Nom</label> 
+                            <input type="text" class="form-control" name="nom" required>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="prenom">Prenom</label> 
+                            <input type="text" class="form-control" name="prenom" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="email">E-mail</label> 
+                            <input type="text" pattern=".+@.+\..+" class="form-control" name="email" required >
+                            <small></small>
+                        </div> 
+                        <div class="form-group col-md-6">
+                            <label for="phone">Téléphone</label> 
+                            <input type="tel" pattern="^(?:0|\(?\+33\)?\s?|0033\s?)[1-79](?:[\.\-\s]?\d\d){4}$" class="form-control" name="phone" required>
+                        </div>
+                    </div>
+
                     <div class="form-group">
-                        <label for="nom">Nom</label> 
-                        <input type="text" class="form-control" id="nom" required>
+                        <label for="adresse">Adresse: numéro et rue</label> 
+                        <input type="text"  class="form-control" name="adresse" required>
                     </div>
                     <div class="form-group">
-                        <label for="prenom">Prenom</label> 
-                        <input type="text" class="form-control" id="prenom" required>
+                        <label for="adresse-ln2">Batiment, passage, appt, etc.</label> 
+                        <input type="text"  class="form-control" name="adresse-ln2">
                     </div>
-                    <div class="form-group">
-                        <label for="email">email</label> 
-                        <input type="text" pattern=".+@.+\..+" class="form-control" id="email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="adresse">Adresse</label> 
-                        <input type="text"  class="form-control" id="email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="phone">Téléphone</label> 
-                        <input type="tel" pattern="^(?:0|\(?\+33\)?\s?|0033\s?)[1-79](?:[\.\-\s]?\d\d){4}$" class="form-control" id="email" required>
+
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="code-postal">Code postal en 5 chiffres</label> 
+                            <input type="text" pattern="[0-9]{5}" maxlength="5" class="form-control" name="code-postal" required>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="ville">Ville</label> 
+                            <input type="text"  class="form-control" name="ville" required>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="date">Date</label> 
                         <input type="date" pattern="(0[1-9]|1[0-9]|2[0-9]|3[01]).(0[1-9]|1[012]).[0-9]{4}
-                        " class="form-control" id="email" required>
+                        " class="form-control" name="date" required>
                     </div>
 
-
-
-                    <button type="submit" class="btn btn-primary">Commander</button>
+                    <button id="submit-btn" type="submit" class="btn btn-primary btn-block">Commander</button>
                 </form>
             </div>
         </div>

@@ -64,13 +64,6 @@ function sumOfPrices(){
 }
  
 
-
-
-
-
-
-
-
 // Remove all items
 document.getElementById("removeAll").addEventListener('click',()=>{
           
@@ -86,3 +79,22 @@ document.getElementById("removeAll").addEventListener('click',()=>{
     };
 }
 );
+
+
+// Submit Form
+let form=document.getElementById('cartForm');
+
+console.log(form.adresse);
+
+
+
+
+/*  
+// Submit Button
+const submitForm=document.getElementById('submit-btn');
+submitForm.addEventListener('click', ($event) => {
+    
+   
+
+});
+*/
