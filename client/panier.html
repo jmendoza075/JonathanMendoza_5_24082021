@@ -67,11 +67,11 @@
           
 
           
-        <div class="row mt-5">
+        <div id="contact-form" class="row mt-5">
             <div class="col">
                 <h2>Contacts</h2>
                               
-                <form id="cartForm">
+                <form id="cartForm" action="confirmation.html">
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="nom">Nom</label> 
@@ -101,13 +101,13 @@
                     </div>
                     <div class="form-group">
                         <label for="adresse-ln2">Batiment, passage, appt, etc.</label> 
-                        <input type="text"  class="form-control" name="adresse-ln2">
+                        <input type="text"  class="form-control" name="adresseLn2">
                     </div>
 
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="code-postal">Code postal en 5 chiffres</label> 
-                            <input type="text" pattern="[0-9]{5}" maxlength="5" class="form-control" name="code-postal" required>
+                            <input type="text" pattern="[0-9]{5}" maxlength="5" class="form-control" name="codepostal" required>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="ville">Ville</label> 

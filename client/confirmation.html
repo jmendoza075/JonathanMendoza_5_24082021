@@ -42,20 +42,20 @@
                     <div class="card">
                         <div class=" logo p-5 px-5 text-center"> <img src="images/logo-Orinoco_lg.png" width="300"> </div>
                         <div class="invoice p-5">
-                            <h5>Votre commande est confirmée !</h5> <span class="font-weight-bold d-block mt-4">Bonjour</span> <span>Votre commande a été confirmée et sera expédiée dans les prochains jours !</span>
+                            <h5>Votre commande est confirmée !</h5> <span id="nom" class="font-weight-bold d-block mt-4">Bonjour</span> <span>Votre commande a été confirmée et sera expédiée dans les prochains jours !</span>
                             <div class="payment border-top mt-3 mb-3 border-bottom table-responsive">
                                 <table class="table table-borderless">
                                     <tbody>
                                         <tr>
                                             <td>
-                                                <div class="py-2"> <span class="d-block text-muted">Date de commande</span> <span>12 Jan,2018</span> </div>
+                                                <div class="py-2"> <span class="d-block text-muted">Date de commande</span> <span id="orderDate">12 Jan,2018</span> </div>
                                             </td>
                                             <td>
-                                                <div class="py-2"> <span class="d-block text-muted">Référence de l'achat</span> <span>MT12332345</span> </div>
+                                                <div class="py-2"> <span class="d-block text-muted">Référence de l'achat</span> <span id="orderConfirmId">MT12332345</span> </div>
                                             </td>
                                             
                                             <td>
-                                                <div class="py-2"> <span class="d-block text-muted">Adresse de livraison</span> <span>414 Advert Avenue, NY,USA</span> </div>
+                                                <div class="py-2"> <span class="d-block text-muted">Adresse de livraison</span> <span id="address" >414 Advert Avenue, NY,USA</span> </div>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -63,7 +63,9 @@
                             </div>
                             <div class="product border-bottom table-responsive">
                                 <table class="table table-borderless">
-                                    <tbody>
+                                    <tbody id="orderTable">
+                                        
+                                        <!-- 
                                         <tr>
                                             <td width="20%"> <img src="" width="90"> </td>
                                             <td width="60%"> <span class="font-weight-bold">Men's Sports cap</span>
@@ -82,6 +84,7 @@
                                                 <div class="text-right"> <span class="font-weight-bold">$77.50</span> </div>
                                             </td>
                                         </tr>
+                                        -->
                                     </tbody>
                                 </table>
                             </div>
@@ -95,7 +98,7 @@
                                                     <div class="text-left"> <span class="font-weight-bold">Total</span> </div>
                                                 </td>
                                                 <td>
-                                                    <div class="text-right"> <span class="font-weight-bold">$238.50</span> </div>
+                                                    <div class="text-right"> <span id="total" class="font-weight-bold"> €</span> </div>
                                                 </td>
                                             </tr>
                                         </tbody>
