@@ -91,7 +91,7 @@ apiRequest.onreadystatechange = () => {
         });
 
         //Apply Bootstrap classes//
-        cameraCardCol.classList.add('col-12', 'col-lg-6','mt-4');
+        cameraCardCol.classList.add('col-12', 'col-lg-6','mt-4','mx-auto');
         cameraCard.classList.add('card', 'mb-4', 'mb-lg-0', 'border-light', 'shadow-sm');
         cameraCardBody.classList.add('card-body');
         cameraCardName.classList.add('card-title');
@@ -111,7 +111,8 @@ apiRequest.onreadystatechange = () => {
                 price: cameraProduct.price/100,
                 basePrice:cameraProduct.price/100,
                 count: 1,
-                lense: lensChoice
+                lense: lensChoice,
+                id:product_id
             };
             
 

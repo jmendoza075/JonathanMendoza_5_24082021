@@ -105,30 +105,19 @@ submitButton.addEventListener('click', ($event) => {
 });
 
 
-
-
-
-
-
-
-
-
-
-// Remove all items
-document.getElementById("removeAll").addEventListener('click',()=>{
-          
-    let storageCount= localStorage.length
+// Remove all items Button
+document.getElementById("removeAll").addEventListener('click',()=> {
+        let storageCount= localStorage.length
     
-    if (storageCount > 0) {
-        localStorage.clear();
-        orderTable=[]; 
-        table.innerHTML="";
-        //set displays to 0
-        totalItems.innerHTML='Total Items: ' + orderTable.length;
-        totalDisplay.innerHTML='Total Price: ' + orderTable.length;
-    };
-}
-);
+        if (storageCount > 0) {
+            localStorage.clear();
+            orderTable=[]; 
+            table.innerHTML="";
+            //set displays to 0
+            totalItems.innerHTML='Total Items: ' + orderTable.length;
+            totalDisplay.innerHTML='Total Price: ' + orderTable.length;
+        };
+});
 
 
 

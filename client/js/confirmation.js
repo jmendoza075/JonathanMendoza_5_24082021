@@ -1,6 +1,6 @@
 let orderTable;
 let totalPrice;
-let productsCart=[];
+let productsCart= ["5be9bc241c9d440000a730e7","5be1ed3f1c9d44000030b061"] ; // <- good format for fetch-POST array of string id's 
 
 
 // Recover Ordered Items from Local Storage
@@ -9,13 +9,14 @@ totalPrice = JSON.parse(localStorage.getItem('totalPrice'));
 
 
 
+
 // Recover Contact from Local Storage
-const contactCart=JSON.parse(localStorage.getItem('contactCart')); 
+let contactCart=JSON.parse(localStorage.getItem('contactCart')); 
 
 
 // API fetch POST 
 
-const order = { contact: contactCart, products:  productsCart};
+const order = { contact: contactCart, products: productsCart};
 
 fetch('http://localhost:3000/api/cameras/order/', {
   method: 'POST', 
@@ -32,17 +33,22 @@ fetch('http://localhost:3000/api/cameras/order/', {
 document.getElementById('orderConfirmId').innerHTML=data.orderId;
 document.getElementById('nom').innerHTML=`Bonjour ${data.contact.firstName} ${data.contact.lastName}`;
 document.getElementById('orderDate').innerHTML=data.contact.date;
-document.getElementById('address').innerHTML=
-`${data.contact.address} ${data.contact.addressLn2} ${data.contact.codePostal} ${data.contact.city}`;
+
+const addressTo = `${data.contact.address} <br>
+${data.contact.addressLn2}<br>
+${data.contact.codePostal} ${data.contact.city} `;
+
+document.getElementById('address').innerHTML= addressTo;
 
 
-
-
-
+// console.log(data.products[0].name);
+// console.log(data.products[0].price);
+// console.log(data.products[0].lenses[0]);
 
 })
 .catch((error) => {
   console.error('Error:', error);
+  alert('Error in API POSTing');
 });
 
 
@@ -55,5 +61,5 @@ for (let i in orderTable){
 }
 
 
-console.log(totalPrice);
+
 document.getElementById('total').innerHTML=`${totalPrice} € `;
