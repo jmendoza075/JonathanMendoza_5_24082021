@@ -46,7 +46,8 @@ document.getElementById('address').innerHTML= addressTo;
 for (let i in orderTable){
   table=document.getElementById('orderTable');
   table.appendChild(document.createElement('tr')).innerHTML=
-  `   <th scope="row">${orderTable[i].name}</th>
+  `   <td width="20%"> <img src="${data.products[i].imageUrl}" width="90"> </td>
+      <th scope="row">${orderTable[i].name}</th>
       <td>${orderTable[i].lense}</td>
       <td class="text-right">
       ${(orderTable[i].price = new Intl.NumberFormat   // Euro format

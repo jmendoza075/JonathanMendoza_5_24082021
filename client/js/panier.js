@@ -14,9 +14,7 @@ function mainFunction(){
 
 // Recover items in Local Storage
 function recoverItems (){
-    
     orderTable = JSON.parse(localStorage.getItem('basketItem')); 
-console.log(orderTable);
     if (localStorage.getItem('basketItem') == null) {
     alert('Votre panier est vide. Veuillez choisir votre appareil photo');
     document.getElementById('contact-form').classList.add('invisible');
@@ -26,7 +24,7 @@ console.log(orderTable);
         totalItems.innerHTML="Nombre d'articles: " + orderTable.length;
     }
 }
-console.log(orderTable);
+
 
 
 // Display items in the table   
@@ -52,22 +50,17 @@ function displayItems(){
 displayItems();
 
 // Collect all Prices in an array
-console.log(orderTable);
-
 function collectPrice(){
     for (let order in orderTable) {
     arrayOfPrice.push(orderTable[order].price);
     };
 }
 
-console.log(arrayOfPrice);
-
 
 // Sum of all Prices
 function sumOfPrices(){
     const reducer = (previousValue, currentValue) => previousValue + currentValue;
     totalPrice=(arrayOfPrice.reduce(reducer));
-
     totalDisplay=document.getElementById('totalPrice');
     
     //Display Prix total in Euros format
@@ -78,19 +71,8 @@ function sumOfPrices(){
 
 }
 
-
-
-
-
-
 // Add Total Price to Local Storage
-  localStorage.setItem('totalPrice', JSON.stringify(totalPrice));
-
-
-
-
-
-
+localStorage.setItem('totalPrice', JSON.stringify(totalPrice));
 
 // Submit Button
 const submitButton=document.getElementById('submit-btn');
@@ -102,7 +84,6 @@ submitButton.addEventListener('click', ($event) => {
     let productsCart = [];
     productsCart.push(orderTable);
     console.log(productsCart);
-
 
     let form=document.getElementById('cartForm');
 
@@ -120,8 +101,6 @@ submitButton.addEventListener('click', ($event) => {
 
     console.log(contactCart);
     localStorage.setItem('contactCart', JSON.stringify(contactCart));
-    
-
 });
 
 
