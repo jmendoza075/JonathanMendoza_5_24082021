@@ -48,9 +48,14 @@ for (let i in orderTable){
   table.appendChild(document.createElement('tr')).innerHTML=
   `   <th scope="row">${orderTable[i].name}</th>
       <td>${orderTable[i].lense}</td>
-      <td class="text-right">${orderTable[i].price} €</td>   `;
+      <td class="text-right">
+      ${(orderTable[i].price = new Intl.NumberFormat   // Euro format
+        ("fr-FR", {style: "currency", currency: "EUR",})
+        .format(orderTable[i].price)
+    )} 
+      </td>   `;
 }
-document.getElementById('total').innerHTML=`${totalPrice} € `;
+document.getElementById('total').innerHTML=`${totalPrice}`;
 
 
 // console.log(data.products[0].name);
@@ -62,17 +67,6 @@ document.getElementById('total').innerHTML=`${totalPrice} € `;
   console.error('Error:', error);
   alert('Error in API POSTing');
 });
-
-
-for (let i in orderTable){
-  table=document.getElementById('orderTable');
-  table.appendChild(document.createElement('tr')).innerHTML=
-  `   <th scope="row">${orderTable[i].name}</th>
-      <td>${orderTable[i].lense}</td>
-      <td class="text-right">${orderTable[i].price} €</td>   `;
-}
-document.getElementById('total').innerHTML=`${totalPrice} € `;
-
 
 
 //Click to Menu and Button: Acceuil -> Empties the Local Storage

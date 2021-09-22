@@ -59,7 +59,16 @@ apiRequest.onreadystatechange = () => {
 
         cameraCardName.textContent = cameraProduct.name;
         cameraCardText.textContent = cameraProduct.description;
-        cameraCardPrice.textContent = (cameraProduct.price/100) + ' EUR';
+
+        //Display Prix total in Euros format
+        let camPriceEuro = (cameraProduct.price/100)
+
+        cameraCardPrice.textContent =`${(camPriceEuro = new Intl.NumberFormat
+            ("fr-FR", {style: "currency", currency: "EUR",})
+            .format(camPriceEuro)
+        )}` ;
+
+
         cameraCardButton.textContent = 'Ajouter au panier';
         cameraCardButton.href = '#';
         

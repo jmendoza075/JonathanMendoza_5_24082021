@@ -47,7 +47,7 @@
               <tr>
                 <th scope="col">Camera</th>
                 <th scope="col">Objectif</th>
-                <th scope="col">Prix</th>
+                <th scope="col" class="text-right">Prix</th>
               </tr>
             </thead>
             <tbody id="order-body">
@@ -61,9 +61,9 @@
                 -->
             </tbody>
           </table>
+          <div class="text-right font-weight-bold" id="totalPrice"></div>  
           <div id="totalItems"></div>  
-          <div id="totalPrice"></div>  
-          <button type="button" id="removeAll"  class="btn btn-secondary">Tout Supprimer</button>
+          <button type="button" id="removeAll"  class="btn btn-outline-secondary btn-sm">Tout Supprimer</button>
           
 
           
@@ -78,7 +78,7 @@
                             <input type="text" class="form-control" name="nom" required>
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="prenom">Prenom</label> 
+                            <label for="prenom">Prénom</label> 
                             <input type="text" class="form-control" name="prenom" required>
                         </div>
                     </div>
@@ -96,7 +96,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="adresse">Adresse: numéro et rue</label> 
+                        <label for="adresse">Adresse: numéro et nom de rue</label> 
                         <input type="text"  class="form-control" name="adresse" required>
                     </div>
                     <div class="form-group">
@@ -133,11 +133,11 @@
             <div class="row pt-4 pb-3">
                 <div class="col">
                     <ul class="list-inline text-center">
-                        <li class="list-inline-item"><a href="#">Qui nous sommes</a></li>
+                        <li class="list-inline-item"><a href="#">Qui sommes nous</a></li>
                         <li class="list-inline-item">&middot;</li>
                         <li class="list-inline-item"><a href="#">Contacts</a></li>
                         <li class="list-inline-item">&middot;</li>
-                        <li class="list-inline-item"><a href="#">Conditon général de vente</a></li>
+                        <li class="list-inline-item"><a href="#">Conditions générales de vente</a></li>
                     </ul>
                 </div>
             </div>

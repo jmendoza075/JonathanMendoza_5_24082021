@@ -7,7 +7,6 @@ mainFunction();
 
 function mainFunction(){
     recoverItems();
-    displayItems();
     collectPrice();
     sumOfPrices()
 };
@@ -17,37 +16,43 @@ function mainFunction(){
 function recoverItems (){
     
     orderTable = JSON.parse(localStorage.getItem('basketItem')); 
-
+console.log(orderTable);
     if (localStorage.getItem('basketItem') == null) {
-    alert('basket is empty');
+    alert('Votre panier est vide. Veuillez choisir votre appareil photo');
     document.getElementById('contact-form').classList.add('invisible');
     document.getElementById('removeAll').classList.add('invisible');
     } else{
-        orderTable = JSON.parse(localStorage.getItem('basketItem')); 
         totalItems= document.getElementById('totalItems');
-        totalItems.innerHTML='Total Items: ' + orderTable.length;
+        totalItems.innerHTML="Nombre d'articles: " + orderTable.length;
     }
 }
-
+console.log(orderTable);
 
 
 // Display items in the table   
+let orderDisplay; 
+orderDisplay= JSON.parse(localStorage.getItem('basketItem')); 
+
 function displayItems(){
-    for (let i in orderTable){
+    for (let i in orderDisplay){
         table=document.getElementById('order-body');
         table.appendChild(document.createElement('tr')).innerHTML=
-        `   <th scope="row">${orderTable[i].name}</th>
-            <td>${orderTable[i].lense}</td>
-            <td>${orderTable[i].price} Euros</td>   `;
+        `<th scope="row">${orderDisplay[i].name}</th>
+        <td>${orderDisplay[i].lense}</td>
+        <td class="text-right">  
+                ${(orderDisplay[i].price = new Intl.NumberFormat   // Euro format
+                    ("fr-FR", {style: "currency", currency: "EUR",})
+                    .format(orderDisplay[i].price)
+                )} 
+        </td>   
+        `;
     }
 }
 
-
-
-
+displayItems();
 
 // Collect all Prices in an array
-
+console.log(orderTable);
 
 function collectPrice(){
     for (let order in orderTable) {
@@ -55,14 +60,29 @@ function collectPrice(){
     };
 }
 
+console.log(arrayOfPrice);
+
+
 // Sum of all Prices
 function sumOfPrices(){
     const reducer = (previousValue, currentValue) => previousValue + currentValue;
     totalPrice=(arrayOfPrice.reduce(reducer));
 
     totalDisplay=document.getElementById('totalPrice');
-    totalDisplay.innerHTML=`Total Price: ${totalPrice} Euros`;
+    
+    //Display Prix total in Euros format
+    totalDisplay.innerHTML=`Total : ${(totalPrice = new Intl.NumberFormat
+        ("fr-FR", {style: "currency", currency: "EUR",})
+        .format(totalPrice)
+    )}` ;
+
 }
+
+
+
+
+
+
 // Add Total Price to Local Storage
   localStorage.setItem('totalPrice', JSON.stringify(totalPrice));
 

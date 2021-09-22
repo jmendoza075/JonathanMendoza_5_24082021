@@ -47,7 +47,17 @@ apiRequest.onreadystatechange = () => {
             //Iterate//            
             cameraCardName.textContent = CAMERAS[item].name;
             cameraCardText.textContent = CAMERAS[item].description;
-            cameraCardPrice.textContent = (CAMERAS[item].price/100) + ' EUR';
+
+        
+            //Display Prix total in Euros format
+            let camPriceEuro = (CAMERAS[item].price/100)
+
+            cameraCardPrice.textContent =`${(camPriceEuro = new Intl.NumberFormat
+                ("fr-FR", {style: "currency", currency: "EUR",})
+                .format(camPriceEuro)
+            )}` ;
+
+
             cameraCardButton.textContent = 'En savoir plus';
             cameraCardButton.href = `produit.html?id=${cameraId}`;
             
