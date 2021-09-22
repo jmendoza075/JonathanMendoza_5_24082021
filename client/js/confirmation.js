@@ -59,10 +59,6 @@ for (let i in orderTable){
 document.getElementById('total').innerHTML=`${totalPrice}`;
 
 
-// console.log(data.products[0].name);
-// console.log(data.products[0].price);
-// console.log(data.products[0].lenses[0]);
-
 })
 .catch((error) => {
   console.error('Error:', error);

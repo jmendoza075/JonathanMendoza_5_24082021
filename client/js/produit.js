@@ -121,7 +121,8 @@ apiRequest.onreadystatechange = () => {
                 basePrice:cameraProduct.price/100,
                 count: 1,
                 lense: lensChoice,
-                id:product_id
+                id:product_id,
+                imageUrl:cameraProduct.imageUrl
             };
             
 
