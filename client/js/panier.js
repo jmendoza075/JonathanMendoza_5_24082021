@@ -2,11 +2,9 @@ let orderTable;
 let totalItems;
 let table;
 const arrayOfPrice = [0];
+const arrayOfItems = [0];
 const dateNow = new Date(); // today, now
 const dateFr = dateNow.toLocaleDateString('fr-FR');  // DD/MM/YYYY
-
-console.log(dateFr);
-
 
 
 mainFunction();
@@ -14,7 +12,9 @@ mainFunction();
 function mainFunction(){
     recoverItems();
     collectPrice();
-    sumOfPrices()
+    sumOfPrices();
+    collectItems();
+    sumOfItems()
 };
 
 
@@ -25,9 +25,6 @@ function recoverItems (){
     alert('Votre panier est vide. Veuillez choisir votre appareil photo');
     document.getElementById('contact-form').classList.add('invisible');
     document.getElementById('removeAll').classList.add('invisible');
-    } else{
-        totalItems= document.getElementById('totalItems');
-        totalItems.innerHTML="Nombre d'articles: " + orderTable.length;
     }
 }
 
@@ -36,7 +33,7 @@ function recoverItems (){
 // Display items in the table   
 let orderDisplay; 
 orderDisplay= JSON.parse(localStorage.getItem('basketItem')); 
-console.log(orderDisplay);
+
 function displayItems(){
     for (let i in orderDisplay){
         table=document.getElementById('order-body');
@@ -44,6 +41,8 @@ function displayItems(){
         `   <td width="20%" class="text-center"> <a href="produit.html?id=${orderDisplay[i].id}"> <img src="${orderDisplay[i].imageUrl}" width="90" alt="cam"></a> </td>
             <th scope="row">${orderDisplay[i].name}</th>
             <td>${orderDisplay[i].lense}</td>
+            <td class="text-center">${orderDisplay[i].count}</td>
+            <td class="text-right">${orderDisplay[i].basePrice}</td>
             <td class="text-right">  
                     ${(orderDisplay[i].price = new Intl.NumberFormat   // Euro format
                         ("fr-FR", {style: "currency", currency: "EUR",})
@@ -56,6 +55,26 @@ function displayItems(){
 
 displayItems();
 
+console.log(orderTable);
+
+
+// Collect all Item Counts in an array
+function collectItems(){
+    for (let item in orderTable) {
+    arrayOfItems.push(orderTable[item].count);
+    };
+}
+
+// Total Item count
+function sumOfItems(){
+    const itemReducer = (previousValue, currentValue) => previousValue + currentValue;
+    totalItems=(arrayOfItems.reduce(itemReducer));
+    totalItemsDiplay=document.getElementById('totalItems');
+    totalItemsDiplay.innerHTML= `Nombre d'articles: ${totalItems}  `;
+
+}
+
+
 // Collect all Prices in an array
 function collectPrice(){
     for (let order in orderTable) {
@@ -63,13 +82,12 @@ function collectPrice(){
     };
 }
 
-
 // Sum of all Prices
 function sumOfPrices(){
     const reducer = (previousValue, currentValue) => previousValue + currentValue;
     totalPrice=(arrayOfPrice.reduce(reducer));
+
     totalDisplay=document.getElementById('totalPrice');
-    
     //Display Prix total in Euros format
     totalDisplay.innerHTML=`Total : ${(totalPrice = new Intl.NumberFormat
         ("fr-FR", {style: "currency", currency: "EUR",})
@@ -123,8 +141,8 @@ document.getElementById("removeAll").addEventListener('click',()=> {
             orderTable=[]; 
             table.innerHTML="";
             //set displays to 0
-            totalItems.innerHTML='Total Items: ' + orderTable.length;
-            totalDisplay.innerHTML='Total Price: ' + orderTable.length;
+            totalItems.innerHTML=`Nombre d'articles: ${totalItems}  `
+            totalDisplay.innerHTML='Total: ' + orderTable.length;
         };
 });
 

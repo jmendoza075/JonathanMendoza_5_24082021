@@ -43,12 +43,16 @@ const addressTo = `${data.contact.address} <br>
                   ${data.contact.codePostal} ${data.contact.city} `;
 document.getElementById('address').innerHTML= addressTo;
 
+
 for (let i in orderTable){
   table=document.getElementById('orderTable');
+
   table.appendChild(document.createElement('tr')).innerHTML=
-  `   <td width="20%"> <img src="${data.products[i].imageUrl}" width="90"> </td>
+  `   <td width="20%" class="text-center"> <img src="${data.products[i].imageUrl}" width="90"> </td>
       <th scope="row">${orderTable[i].name}</th>
       <td>${orderTable[i].lense}</td>
+      <td class="text-center">${orderTable[i].count}</td>
+      <td class="text-right">${orderTable[i].basePrice}</td>
       <td class="text-right">
       ${(orderTable[i].price = new Intl.NumberFormat   // Euro format
         ("fr-FR", {style: "currency", currency: "EUR",})

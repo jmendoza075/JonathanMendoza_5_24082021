@@ -3,7 +3,7 @@
 let params = new URLSearchParams(window.location.search);
 let product_id= params.get('id');
 
-let orderTable =[];
+let orderTable=[];
 let orderedObject;
 
 // create and open AJAX request //
@@ -57,13 +57,13 @@ apiRequest.onreadystatechange = () => {
         cameraCardName.textContent = cameraProduct.name;
         cameraCardText.textContent = cameraProduct.description;
 
-        //Display Prix total in Euros format
+        //Display Prix in Euros format
         let camPriceEuro = (cameraProduct.price/100)
 
         cameraCardPrice.textContent =`${(camPriceEuro = new Intl.NumberFormat
-            ("fr-FR", {style: "currency", currency: "EUR",})
-            .format(camPriceEuro)
-        )}` ;
+                ("fr-FR", {style: "currency", currency: "EUR",})
+                .format(camPriceEuro)
+            )}` ;
 
         cameraCardButton.textContent = 'Ajouter au panier';
         cameraCardButton.href = '#';
@@ -92,10 +92,12 @@ apiRequest.onreadystatechange = () => {
             lensChoice= $event.target.value;
         });
 
+        
+
+
         //Banner Confirmation Ajout au Panier
         ajoutBanner.innerText = "Votre choix d'article a bien été ajouté au panier."
-        ajoutBanner.classList.add('ajoutBanner', 'alert', 'alert-success', 'mt-4','text-center');
-        $('.ajoutBanner').hide();  //hide Banner message 
+        
     
         //Apply Bootstrap classes//
         cameraCardCol.classList.add('col-12', 'col-lg-6','mt-4','mx-auto');
@@ -107,12 +109,21 @@ apiRequest.onreadystatechange = () => {
         cameraCardLenses.classList.add('form-group');
         lensSelect.classList.add('form-control')
         cameraCardButton.classList.add('add-cart','btn', 'btn-primary','mt-2');
-        seeCartButton.classList.add('btn', 'btn-secondary','mt-2','ml-5');
+        ajoutBanner.classList.add('ajoutBanner', 'alert', 'alert-success', 'mt-4','text-center');
+        $('.ajoutBanner').hide();  //hide Banner message 
+        seeCartButton.classList.add('btn', 'btn-outline-secondary','mt-2','ml-5');
      
-         
+
+
+        // Check and add item to Local Storage
+        if (localStorage.getItem('basketItem') !== null) {
+            orderTable = JSON.parse(localStorage.getItem('basketItem')); 
+        }                                                               // <-No "else" statement because we do 
+                                                                        // not need to inform the client at this stage
 
         //On click, Add to localStorage//
         cameraCardButton.addEventListener('click',   ()=>  {
+            
             orderedObject = {
                 name: cameraProduct.name,
                 price: cameraProduct.price/100,
@@ -121,13 +132,24 @@ apiRequest.onreadystatechange = () => {
                 lense: lensChoice,
                 id:product_id,
                 imageUrl:cameraProduct.imageUrl
-            };
+                };
+    
+
+            //Check if orderedObject is already in the orderTable
             
-            // Check and add item to Local Storage
-            if (localStorage.getItem('basketItem') !== null) {
-                orderTable = JSON.parse(localStorage.getItem('basketItem')); 
-            } 
-            orderTable.push(orderedObject);
+            function updateOrderInOrderTable(product){
+                for (let i=0; i < orderTable.length; i++){
+                    if ((orderTable[i].id == product.id) && (orderTable[i].lense == product.lense)){  // check if same id and same lense
+                        orderTable[i].count +=1;
+                        orderTable[i].price = orderTable[i].basePrice * orderTable[i].count;
+                        return; 
+                    }
+                }
+                orderTable.push(product);
+            }
+
+            updateOrderInOrderTable(orderedObject);
+
 
             //Show then hide Banner message 
             $('.ajoutBanner').show();  
@@ -143,4 +165,3 @@ apiRequest.onreadystatechange = () => {
        
    }
 };
-
