@@ -36,20 +36,20 @@ function recoverItems (){
 // Display items in the table   
 let orderDisplay; 
 orderDisplay= JSON.parse(localStorage.getItem('basketItem')); 
-
+console.log(orderDisplay);
 function displayItems(){
     for (let i in orderDisplay){
         table=document.getElementById('order-body');
         table.appendChild(document.createElement('tr')).innerHTML=
-        `<td width="20%"> <img src="${orderDisplay[i].imageUrl}" width="90"> </td>
-        <th scope="row">${orderDisplay[i].name}</th>
-        <td>${orderDisplay[i].lense}</td>
-        <td class="text-right">  
-                ${(orderDisplay[i].price = new Intl.NumberFormat   // Euro format
-                    ("fr-FR", {style: "currency", currency: "EUR",})
-                    .format(orderDisplay[i].price)
-                )} 
-        </td>   
+        `   <td width="20%" class="text-center"> <a href="produit.html?id=${orderDisplay[i].id}"> <img src="${orderDisplay[i].imageUrl}" width="90" alt="cam"></a> </td>
+            <th scope="row">${orderDisplay[i].name}</th>
+            <td>${orderDisplay[i].lense}</td>
+            <td class="text-right">  
+                    ${(orderDisplay[i].price = new Intl.NumberFormat   // Euro format
+                        ("fr-FR", {style: "currency", currency: "EUR",})
+                        .format(orderDisplay[i].price)
+                    )} 
+            </td>   
         `;
     }
 }

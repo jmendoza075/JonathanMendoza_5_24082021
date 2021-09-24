@@ -107,9 +107,9 @@ apiRequest.onreadystatechange = () => {
         cameraCardLenses.classList.add('form-group');
         lensSelect.classList.add('form-control')
         cameraCardButton.classList.add('add-cart','btn', 'btn-primary','mt-2');
-        seeCartButton.classList.add('see-cart','btn', 'btn-secondary','mt-2','ml-4');
+        seeCartButton.classList.add('btn', 'btn-secondary','mt-2','ml-5');
      
-        $('.see-cart').hide();  
+         
 
         //On click, Add to localStorage//
         cameraCardButton.addEventListener('click',   ()=>  {
@@ -132,7 +132,7 @@ apiRequest.onreadystatechange = () => {
             //Show then hide Banner message 
             $('.ajoutBanner').show();  
             setTimeout(() => {$('.ajoutBanner').hide()}, 3000);
-            setTimeout(() => {$('.see-cart').show()}, 3000);
+            
                        
             //Update basket in Local Storage
             localStorage.setItem('basketItem', JSON.stringify(orderTable));
