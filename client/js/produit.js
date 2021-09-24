@@ -3,15 +3,8 @@
 let params = new URLSearchParams(window.location.search);
 let product_id= params.get('id');
 
-
 let orderTable =[];
 let orderedObject;
-
-
-
-
-//hide message: successful add to cart   
-$('#add-success').hide();
 
 // create and open AJAX request //
 let apiRequest = new XMLHttpRequest();
@@ -49,13 +42,17 @@ apiRequest.onreadystatechange = () => {
         let cameraCardText = document.createElement('p');
         let cameraCardPrice = document.createElement('p');
         let cameraCardLenses = document.createElement('div');
+        let ajoutBanner = document.createElement('div');
         let cameraCardButton = document.createElement('a');
-
+        let seeCartButton = document.createElement('a');
+        
+        cameraCardBody.appendChild(ajoutBanner);
         cameraCardBody.appendChild(cameraCardName);
         cameraCardBody.appendChild(cameraCardText);
         cameraCardBody.appendChild(cameraCardPrice);
         cameraCardBody.appendChild(cameraCardLenses);
         cameraCardBody.appendChild(cameraCardButton);
+        cameraCardBody.appendChild(seeCartButton);
 
         cameraCardName.textContent = cameraProduct.name;
         cameraCardText.textContent = cameraProduct.description;
@@ -68,21 +65,18 @@ apiRequest.onreadystatechange = () => {
             .format(camPriceEuro)
         )}` ;
 
-
         cameraCardButton.textContent = 'Ajouter au panier';
         cameraCardButton.href = '#';
+        seeCartButton.textContent = 'Voir le panier';
+        seeCartButton.href = 'panier.html';
         
         //Dropdown Menu for Lenses //
         let lensLabel = document.createElement('label');
         let lensSelect = document.createElement('select');
-        
-
         lensLabel.innerText='Objectifs disponible: '
-
         cameraCardLenses.appendChild(lensLabel);
         cameraCardLenses.appendChild(lensSelect);     
          
-
         //Lense Options //
         const tabLenses= cameraProduct.lenses;
         for (let i=0; i<tabLenses.length; i+=1){
@@ -92,13 +86,17 @@ apiRequest.onreadystatechange = () => {
         };     
 
         //Lens select//
-        
         const lensDropdown = document.querySelector('select');
         lensChoice= lensDropdown.value;         //applies default choice
         lensDropdown.addEventListener('change',($event) =>{
             lensChoice= $event.target.value;
         });
 
+        //Banner Confirmation Ajout au Panier
+        ajoutBanner.innerText = "Votre choix d'article a bien été ajouté au panier."
+        ajoutBanner.classList.add('ajoutBanner', 'alert', 'alert-success', 'mt-4','text-center');
+        $('.ajoutBanner').hide();  //hide Banner message 
+    
         //Apply Bootstrap classes//
         cameraCardCol.classList.add('col-12', 'col-lg-6','mt-4','mx-auto');
         cameraCard.classList.add('card', 'mb-4', 'mb-lg-0', 'border-light', 'shadow-sm');
@@ -108,12 +106,12 @@ apiRequest.onreadystatechange = () => {
         cameraCardPrice.classList.add('card-text');
         cameraCardLenses.classList.add('form-group');
         lensSelect.classList.add('form-control')
-        cameraCardButton.classList.add('add-cart','btn', 'btn-secondary','mt-4');
-
-
+        cameraCardButton.classList.add('add-cart','btn', 'btn-primary','mt-2');
+        seeCartButton.classList.add('see-cart','btn', 'btn-secondary','mt-2','ml-4');
+     
+        $('.see-cart').hide();  
 
         //On click, Add to localStorage//
-        
         cameraCardButton.addEventListener('click',   ()=>  {
             orderedObject = {
                 name: cameraProduct.name,
@@ -125,19 +123,18 @@ apiRequest.onreadystatechange = () => {
                 imageUrl:cameraProduct.imageUrl
             };
             
-
             // Check and add item to Local Storage
             if (localStorage.getItem('basketItem') !== null) {
                 orderTable = JSON.parse(localStorage.getItem('basketItem')); 
             } 
-              
-            
             orderTable.push(orderedObject);
-            //show message add successful
-            $('#add-success').show();
 
-            
-            
+            //Show then hide Banner message 
+            $('.ajoutBanner').show();  
+            setTimeout(() => {$('.ajoutBanner').hide()}, 3000);
+            setTimeout(() => {$('.see-cart').show()}, 3000);
+                       
+            //Update basket in Local Storage
             localStorage.setItem('basketItem', JSON.stringify(orderTable));
             
             }
