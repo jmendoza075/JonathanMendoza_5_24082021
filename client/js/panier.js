@@ -2,6 +2,12 @@ let orderTable;
 let totalItems;
 let table;
 const arrayOfPrice = [0];
+const dateNow = new Date(); // today, now
+const dateFr = dateNow.toLocaleDateString('fr-FR');  // DD/MM/YYYY
+
+console.log(dateFr);
+
+
 
 mainFunction();
 
@@ -88,6 +94,9 @@ submitButton.addEventListener('click', ($event) => {
 
     let form=document.getElementById('cartForm');
 
+    const dateFR = new Date() // Create date now
+    console.log(dateFR.toLocaleDateString('fr-FR')) // DD/MM/YYYY
+
     const contactCart= {
             lastName:form.nom.value ,
             firstName:form.prenom.value,
@@ -97,7 +106,7 @@ submitButton.addEventListener('click', ($event) => {
             addressLn2: form.adresseLn2.value,
             codePostal: form.codepostal.value,
             city:form.ville.value,
-            date: form.date.value,
+            date: dateFr
         }
 
     console.log(contactCart);
@@ -118,7 +127,6 @@ document.getElementById("removeAll").addEventListener('click',()=> {
             totalDisplay.innerHTML='Total Price: ' + orderTable.length;
         };
 });
-
 
 
 
