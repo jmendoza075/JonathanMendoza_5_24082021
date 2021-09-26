@@ -42,34 +42,37 @@
             </div>
         </div>
 
-        <table class="table table-striped table-bordered mt-5">
-            <thead>
-              <tr class="table-secondary">
-                <th scope="col"> </th>
-                <th scope="col">Appareil photo</th>
-                <th scope="col">Objectif</th>
-                <th scope="col" class="text-center">Quantité</th>
-                <th scope="col" class="text-right">Prix en €</th>
-                <th scope="col" class="text-right">Sous-total</th>
-              </tr>
-            </thead>
-            <tbody id="order-body">
-                <!-- orders here 
-                    <tr >
-                        <td>cam</td>
-                        <td>lens</td>
-                        <td>price</td>
-                    </tr>
-                -->
-            </tbody>
-        </table>
+        <div class="table-responsive-sm">
+            <table class="table table-striped table-bordered mt-5">
+                <thead>
+                <tr class="table-secondary">
+                    <th scope="col"> </th>
+                    <th scope="col">Appareil photo</th>
+                    <th scope="col">Objectif</th>
+                    <th scope="col" class="text-center">Quantité</th>
+                    <th scope="col" class="text-right">Prix unitaire</th>
+                    <th scope="col" class="text-right">Sous-total</th>
+                </tr>
+                </thead>
+                <tbody id="order-body">
+                    <!-- orders here 
+                        <tr >
+                            <td>cam</td>
+                            <td>lens</td>
+                            <td>price</td>
+                        </tr>
+                    -->
+                </tbody>
+            </table>
+        </div>
+
         <div class="text-right font-weight-bold" id="totalPrice"></div>  
         <div id="totalItems"></div>  
         <button type="button" id="removeAll"  class="btn btn-outline-secondary btn-sm">Tout Supprimer</button>
           
 
         <!-- Contact  -->
-        <div id="contact-form" class="row mt-5">
+        <div id="contact-form" class="row mt-4">
             <div class="col">
                 <h2>Contacts</h2>
                               

@@ -28,9 +28,6 @@ fetch('http://localhost:3000/api/cameras/order/', {
 })
 .then(response => response.json())
 .then(data => {
-  console.log(data);
-
-  
 
   
 // Fill-in Confirmation Order: Contacts with Order Reference
@@ -52,12 +49,17 @@ for (let i in orderTable){
       <th scope="row">${orderTable[i].name}</th>
       <td>${orderTable[i].lense}</td>
       <td class="text-center">${orderTable[i].count}</td>
-      <td class="text-right">${orderTable[i].basePrice}</td>
       <td class="text-right">
-      ${(orderTable[i].price = new Intl.NumberFormat   // Euro format
-        ("fr-FR", {style: "currency", currency: "EUR",})
-        .format(orderTable[i].price)
-    )} 
+        ${(orderTable[i].basePrice = new Intl.NumberFormat   // Euro format
+          ("fr-FR", {style: "currency", currency: "EUR",})
+          .format(orderTable[i].basePrice)
+        )} 
+      </td>
+      <td class="text-right">
+        ${(orderTable[i].price = new Intl.NumberFormat   // Euro format
+          ("fr-FR", {style: "currency", currency: "EUR",})
+          .format(orderTable[i].price)
+        )} 
       </td>   `;
 }
 document.getElementById('total').innerHTML=`${totalPrice}`;
@@ -68,6 +70,8 @@ document.getElementById('total').innerHTML=`${totalPrice}`;
   console.error('Error:', error);
   alert('Error in API POSTing');
 });
+
+
 
 
 //Click to Menu and Button: Acceuil -> Empties the Local Storage
