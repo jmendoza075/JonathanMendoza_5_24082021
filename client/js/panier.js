@@ -44,13 +44,12 @@ function displayItems(){
                 <span>${orderTable[i].count}</span>
                 <button class="button-plus btn btn-outline-dark btn-sm" data-id="${orderTable[i].id}" data-lense="${orderTable[i].lense}">+</button>
             </td>
-            <td class="text-right">${orderTable[i].basePrice}</td>
-            <td class="text-right">${orderTable[i].price}</td>   
+            <td class="text-right" >${orderTable[i].basePrice}</td>
+            <td class="text-right" >${orderTable[i].price}</td>   
         `;
     }
     
 }
-
 
 // Collect all Item Counts in an array
 function collectItems(){
@@ -98,45 +97,42 @@ function sumOfPrices(){
 
 
 // PLUS or MINUS an Item
+if (table !=null){
+    table.addEventListener('click',(e) => {
+        const plusButton = e.target.classList.contains('button-plus');
+        const minusButton = e.target.classList.contains('button-minus');
+        const targetId = e.target.dataset.id;
+        const targetLense = e.target.dataset.lense;
+        
+        if (plusButton || minusButton){
+            for(let i=0; i< orderTable.length; i++) {
+                if(orderTable[i].id == targetId){
+                    if(orderTable[i].lense == targetLense){
+                        if(plusButton){
+                            orderTable[i].count += 1;
+                            }
+                            else if(minusButton){
+                            orderTable[i].count -= 1;
+                            }
+                        orderTable[i].price = orderTable[i].count * orderTable[i].basePrice;
+                    }
+                    if (orderTable[i].count <= 0) {         //removes zero item 
+                        orderTable.splice(i, 1);            //
+                    }
 
-table.addEventListener('click',(e) => {
-    const plusButton = e.target.classList.contains('button-plus');
-    const minusButton = e.target.classList.contains('button-minus');
-    const targetId = e.target.dataset.id;
-    const targetLense = e.target.dataset.lense;
-    
-    if (plusButton || minusButton){
-        for(let i=0; i< orderTable.length; i++) {
-            if(orderTable[i].id == targetId){
-                if(orderTable[i].lense == targetLense){
-                    if(plusButton){
-                        orderTable[i].count += 1;
-                        }
-                        else if(minusButton){
-                        orderTable[i].count -= 1;
-                        }
-                    console.log(orderTable[i].basePrice);
-                    console.log(orderTable[i].count);
-                    orderTable[i].price = orderTable[i].count * orderTable[i].basePrice;
                 }
-                console.log(orderTable);
-
-                
-                
             }
         }
-    }
-    window.location.reload();
-    localStorage.setItem('basketItem', JSON.stringify(orderTable));
-    table.innerHTML="";
-    displayItems();
-        
-}); 
+        window.location.reload();
+        localStorage.setItem('basketItem', JSON.stringify(orderTable));
+        table.innerHTML="";
+        displayItems();
+    }); 
+}
 
-
-
-
-// Submit Button
+//
+// Submit Button for CONFIRMATION  with Order and Contact
+//
 const submitButton=document.getElementById('submit-btn');
 submitButton.addEventListener('click', ($event) => {
     //$event.preventDefault();
@@ -167,8 +163,6 @@ submitButton.addEventListener('click', ($event) => {
     console.log(contactCart);
     localStorage.setItem('contactCart', JSON.stringify(contactCart));
 });
-
-
 
         
 // Remove all items Button
