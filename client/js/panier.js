@@ -11,10 +11,11 @@ mainFunction();
 
 function mainFunction(){
     recoverItems();
-    collectPrice();
-    sumOfPrices();
+    displayItems();
     collectItems();
-    sumOfItems()
+    countOfItems();
+    collectPrice();
+    sumOfPrices();    
 };
 
 
@@ -38,37 +39,17 @@ function displayItems(){
         `   <td width="20%" class="text-center"> <a href="produit.html?id=${orderTable[i].id}"> <img src="${orderTable[i].imageUrl}" width="90" alt="cam"></a> </td>
             <th scope="row">${orderTable[i].name}</th>
             <td>${orderTable[i].lense}</td>
-            <td class="text-center">${orderTable[i].count}</td>
+            <td class="text-center">   
+                <button class="button-minus btn btn-outline-dark btn-sm" data-id="${orderTable[i].id}" data-lense="${orderTable[i].lense}">-</button>
+                <span>${orderTable[i].count}</span>
+                <button class="button-plus btn btn-outline-dark btn-sm" data-id="${orderTable[i].id}" data-lense="${orderTable[i].lense}">+</button>
+            </td>
             <td class="text-right">${orderTable[i].basePrice}</td>
             <td class="text-right">${orderTable[i].price}</td>   
         `;
     }
     
 }
-
-// Prices in Euro Format
-function euroFormat(){
-    for (let i in orderTable) {
-        orderTable[i].basePrice = new Intl.NumberFormat
-        ("fr-FR", {style: "currency", currency: "EUR",})
-        .format(orderTable[i].basePrice);
-
-        orderTable[i].price = new Intl.NumberFormat
-        ("fr-FR", {style: "currency", currency: "EUR",})
-        .format(orderTable[i].price);
-
-        
-    }
-};
-
-euroFormat();
-
-
-
-
-displayItems();
-console.log(orderTable);
-console.log(orderTable);
 
 
 // Collect all Item Counts in an array
@@ -78,8 +59,9 @@ function collectItems(){
     };
 }
 
+
 // Count all items
-function sumOfItems(){
+function countOfItems(){
     const itemReducer = (previousValue, currentValue) => previousValue + currentValue;
     totalItems=(arrayOfItems.reduce(itemReducer));
     totalItemsDiplay=document.getElementById('totalItems');
@@ -95,7 +77,6 @@ function collectPrice(){
     };
 }
 
-console.log(table);
 
 // Sum of all Prices
 function sumOfPrices(){
@@ -108,17 +89,50 @@ function sumOfPrices(){
     ("fr-FR", {style: "currency", currency: "EUR",})
     .format(totalPrice)
     )}` ;
+
+    // Add Total Price to Local Storage
+    localStorage.setItem('totalPrice', JSON.stringify(totalPrice));
 };
 
 
 
 
+// PLUS or MINUS an Item
 
- 
+table.addEventListener('click',(e) => {
+    const plusButton = e.target.classList.contains('button-plus');
+    const minusButton = e.target.classList.contains('button-minus');
+    const targetId = e.target.dataset.id;
+    const targetLense = e.target.dataset.lense;
+    
+    if (plusButton || minusButton){
+        for(let i=0; i< orderTable.length; i++) {
+            if(orderTable[i].id == targetId){
+                if(orderTable[i].lense == targetLense){
+                    if(plusButton){
+                        orderTable[i].count += 1;
+                        }
+                        else if(minusButton){
+                        orderTable[i].count -= 1;
+                        }
+                    console.log(orderTable[i].basePrice);
+                    console.log(orderTable[i].count);
+                    orderTable[i].price = orderTable[i].count * orderTable[i].basePrice;
+                }
+                console.log(orderTable);
 
+                
+                
+            }
+        }
+    }
+    window.location.reload();
+    localStorage.setItem('basketItem', JSON.stringify(orderTable));
+    table.innerHTML="";
+    displayItems();
+        
+}); 
 
-// Add Total Price to Local Storage
-localStorage.setItem('totalPrice', JSON.stringify(totalPrice));
 
 
 
@@ -155,18 +169,16 @@ submitButton.addEventListener('click', ($event) => {
 });
 
 
+
+        
 // Remove all items Button
 document.getElementById("removeAll").addEventListener('click',()=> {
-            localStorage.clear();
-            orderTable=[]; 
-            table.innerHTML="";
-            //set displays to 0
-            console.log(totalItems);
-            totalItemsDiplay.innerHTML= "" 
-            totalDisplay.innerHTML="";
-        });
-
-
-
-
+    localStorage.clear();
+    orderTable=[]; 
+    table.innerHTML="";
+    //set displays to 0
+    console.log(totalItems);
+    totalItemsDiplay.innerHTML= "" 
+    totalDisplay.innerHTML="";
+});
 
