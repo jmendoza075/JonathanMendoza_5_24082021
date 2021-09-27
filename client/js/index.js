@@ -1,17 +1,18 @@
-// Get DOM elements //
+const apiURL = "http://localhost:3000/api/cameras/";
 const errorHolder = document.getElementById('error-holder');
 
 // create and open AJAX request //
 let apiRequest = new XMLHttpRequest();
-
-apiRequest.open('GET', 'http://localhost:3000/api/cameras/');
+apiRequest.open('GET', apiURL);
 apiRequest.send();
 
 // capture
 apiRequest.onreadystatechange = () => {
     if(apiRequest.readyState === 4) {
         if(apiRequest.status === 404) {
-            return errorHolder.textContent = 'Error 404. not found';
+            errorHolder.classList.remove('invisible');
+            return errorHolder.textContent = "Error 404!. Merci de verifier l'URL";
+            
         }
         const CAMERAS = JSON.parse(apiRequest.response);
                 
