@@ -48,7 +48,6 @@ function displayItems(){
             <td class="text-right" >${orderTable[i].price}</td>   
         `;
     }
-    
 }
 
 // Collect all Item Counts in an array
@@ -65,7 +64,6 @@ function countOfItems(){
     totalItems=(arrayOfItems.reduce(itemReducer));
     totalItemsDiplay=document.getElementById('totalItems');
     totalItemsDiplay.innerHTML= `Nombre d'articles: ${totalItems}  `;
-
 }
 
 
@@ -135,7 +133,7 @@ if (table !=null){
 //
 const submitButton=document.getElementById('submit-btn');
 submitButton.addEventListener('click', ($event) => {
-    //$event.preventDefault();
+     
     console.log(orderTable);
     console.log(totalPrice);
    

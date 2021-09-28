@@ -118,8 +118,8 @@ apiRequest.onreadystatechange = () => {
         // Check and add item to Local Storage
         if (localStorage.getItem('basketItem') !== null) {
             orderTable = JSON.parse(localStorage.getItem('basketItem')); 
-        }                                                               // <-No "else" statement because we do 
-                                                                        // not need to inform the client at this stage
+        }                                                                
+                                                                        
 
         //On click, Add to localStorage//
         cameraCardButton.addEventListener('click',   ()=>  {
@@ -153,7 +153,7 @@ apiRequest.onreadystatechange = () => {
 
             //Show then hide Banner message 
             $('.ajoutBanner').show();  
-            setTimeout(() => {$('.ajoutBanner').hide()}, 3000);
+            setTimeout(() => {$('.ajoutBanner').hide()}, 2500);
             
                        
             //Update basket in Local Storage
