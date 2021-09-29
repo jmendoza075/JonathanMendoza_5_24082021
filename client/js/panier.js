@@ -167,9 +167,10 @@ submitButton.addEventListener('click', ($event) => {
 document.getElementById("removeAll").addEventListener('click',()=> {
     localStorage.clear();
     orderTable=[]; 
-    table.innerHTML="";
+    window.location.reload();
+    
     //set displays to 0
-    console.log(totalItems);
+    
     totalItemsDiplay.innerHTML= "" 
     totalDisplay.innerHTML="";
 });

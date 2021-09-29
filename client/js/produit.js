@@ -20,7 +20,11 @@ apiRequest.onreadystatechange = () => {
             return errorHolder.textContent = 'Error 404. not found';
         }
         const cameraProduct= JSON.parse(apiRequest.response);
+        productDisplay(cameraProduct);
+   }
+};
 
+function productDisplay(cameraProduct){
         //Create Camera Card //
         let cameraCardCol = document.createElement('div');
         document.querySelector('.product_camera').appendChild(cameraCardCol);
@@ -58,13 +62,10 @@ apiRequest.onreadystatechange = () => {
         cameraCardText.textContent = cameraProduct.description;
 
         //Display Prix in Euros format
-        let camPriceEuro = (cameraProduct.price/100)
-
-        cameraCardPrice.textContent =`${(camPriceEuro = new Intl.NumberFormat
-                ("fr-FR", {style: "currency", currency: "EUR",})
-                .format(camPriceEuro)
-            )}` ;
-
+        let camPriceEuro = euroFormat(cameraProduct.price/100);
+        cameraCardPrice.textContent =camPriceEuro
+        
+        //Add to Cart button//
         cameraCardButton.textContent = 'Ajouter au panier';
         cameraCardButton.href = '#';
         seeCartButton.textContent = 'Voir le panier';
@@ -93,8 +94,6 @@ apiRequest.onreadystatechange = () => {
         });
 
         
-
-
         //Banner Confirmation Ajout au Panier
         ajoutBanner.innerText = "Votre choix d'article a bien été ajouté au panier."
         
@@ -113,7 +112,6 @@ apiRequest.onreadystatechange = () => {
         $('.ajoutBanner').hide();  //hide Banner message 
         seeCartButton.classList.add('btn', 'btn-outline-secondary','mt-2','ml-5');
      
-
 
         // Check and add item to Local Storage
         if (localStorage.getItem('basketItem') !== null) {
@@ -134,26 +132,12 @@ apiRequest.onreadystatechange = () => {
                 imageUrl:cameraProduct.imageUrl
                 };
     
-
-            //Check if orderedObject is already in the orderTable
-            
-            function updateOrderInOrderTable(product){
-                for (let i=0; i < orderTable.length; i++){
-                    if ((orderTable[i].id == product.id) && (orderTable[i].lense == product.lense)){  // check if same id and same lense
-                        orderTable[i].count +=1;
-                        orderTable[i].price = orderTable[i].basePrice * orderTable[i].count;
-                        return; 
-                    }
-                }
-                orderTable.push(product);
-            }
-
             updateOrderInOrderTable(orderedObject);
 
 
             //Show then hide Banner message 
             $('.ajoutBanner').show();  
-            setTimeout(() => {$('.ajoutBanner').hide()}, 2500);
+            setTimeout(() => {$('.ajoutBanner').hide()}, 2000);
             
                        
             //Update basket in Local Storage
@@ -162,6 +146,23 @@ apiRequest.onreadystatechange = () => {
             }
             
         );
-       
-   }
+};
+
+function euroFormat(price){
+    price = new Intl.NumberFormat   // Euro format
+    ("fr-FR", {style: "currency", currency: "EUR",})
+    .format(price)
+    return(price);
+};           
+
+//Check if orderedObject is already in the orderTable            
+function updateOrderInOrderTable(product){
+    for (let i=0; i < orderTable.length; i++){
+        if ((orderTable[i].id == product.id) && (orderTable[i].lense == product.lense)){  // check if same id and same lense
+            orderTable[i].count +=1;
+            orderTable[i].price = orderTable[i].basePrice * orderTable[i].count;
+            return; 
+        }
+    }
+    orderTable.push(product);
 };
