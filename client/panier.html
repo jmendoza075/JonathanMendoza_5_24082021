@@ -13,10 +13,10 @@
     <!-- Header -->
     <div class="bg-dark">
         <div class="container">
-            <div class="row">
+            <div class="row" id="navAria">
                 <nav class="col navbar navbar-expand-lg navbar-dark">
                     <a class="navbar-brand" href="index.html">Orinoco</a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent" aria-controls="navAria" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div id="navbarContent" class="collapse navbar-collapse">
@@ -74,51 +74,47 @@
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="nom">Nom</label> 
-                            <input type="text" pattern="[a-zA-Z0-9]+" class="form-control" name="nom" required>
+                            <input id="nom" type="text" pattern="[a-zA-Z0-9]+" class="form-control" name="nom" required>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="prenom">Prénom</label> 
-                            <input type="text" pattern="[a-zA-Z0-9]+" class="form-control" name="prenom" required>
+                            <input id="prenom" type="text" pattern="[a-zA-Z0-9]+" class="form-control" name="prenom" required>
                         </div>
                     </div>
 
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="email">E-mail</label> 
-                            <input type="text" pattern=".+@.+\..+" class="form-control" name="email" required >
+                            <input id="email" type="text" pattern=".+@.+\..+" class="form-control" name="email" required >
                             <small></small>
                         </div> 
                         <div class="form-group col-md-6">
                             <label for="phone">Téléphone</label> 
-                            <input type="tel" pattern="^(?:0|\(?\+33\)?\s?|0033\s?)[1-79](?:[\.\-\s]?\d\d){4}$" class="form-control" name="phone" required>
+                            <input id="phone" type="tel" pattern="^(?:0|\(?\+33\)?\s?|0033\s?)[1-79](?:[\.\-\s]?\d\d){4}$" class="form-control" name="phone" required>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label for="adresse">Adresse: </label> 
-                        <input type="text"  class="form-control" name="adresse" required>
+                        <input id="adresse" type="text"  class="form-control" name="adresse" required>
                         <small class="font-weight-light">Numéro et nom de rue</small>
                     </div>
                     <div class="form-group">
                         <label for="adresse-ln2"></label> 
-                        <input type="text"  class="form-control" name="adresseLn2">
+                        <input id="adresse-ln2" type="text"  class="form-control" name="adresseLn2">
                         <small class="font-weight-light">Batiment, passage, appt, etc.</small>
                     </div>
 
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="code-postal">Code postal</label> 
-                            <input type="text" pattern="[0-9]{5}" maxlength="5" class="form-control" name="codepostal" required>
+                            <input id="code-postal" type="text" pattern="[0-9]{5}" maxlength="5" class="form-control" name="codepostal" required>
                             <small class="font-weight-light"> En 5 chiffres</small>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="ville">Ville</label> 
-                            <input type="text"  pattern="[a-zA-Z0-9]+" class="form-control" name="ville" required>
+                            <input id="ville" type="text"  pattern="[a-zA-Z0-9]+" class="form-control" name="ville" required>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="date"></label> 
-                        <input type="hidden"  class="form-control" name="date" >
                     </div>
 
                     <button id="submit-btn" type="submit" class="btn btn-primary btn-block">Commander</button>

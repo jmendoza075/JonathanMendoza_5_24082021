@@ -13,10 +13,10 @@
     <!-- Header -->
     <div class="bg-dark">
         <div class="container">
-            <div class="row">
+            <div class="row" id="navAria">
                 <nav class="col navbar navbar-expand-lg navbar-dark">
                     <a class="resetAll navbar-brand" href="index.html">Orinoco</a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent" aria-controls="navAria" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div id="navbarContent" class="collapse navbar-collapse">
@@ -37,21 +37,21 @@
             <div class="row d-flex justify-content-center">
                 <div class="col-md-10">
                     <div class="card">
-                        <div class=" logo p-5 px-5 text-center"> <img src="images/logo-Orinoco_lg.png" width="300"> </div>
+                        <div class=" logo p-5 px-5 text-center"> <img src="images/logo-Orinoco_lg.png" width="300" alt="orinoco logo"> </div>
                         <div class="invoice p-5">
                             <h5>Votre commande est confirmée !</h5> <span id="nom" class="font-weight-bold d-block mt-4">Bonjour</span> <span>Votre commande a été confirmée et sera expédiée dans les plus brefs délais !</span>
                             <div class="payment border-top mt-3 mb-3 border-bottom table-responsive">
                                 <table class="table table-borderless">
                                     <tbody>
                                         <tr>
-                                            <td width="20%">
+                                            <td>
                                                 <div class="py-2"> <span class="d-block text-muted">Date:</span> <span id="orderDate"> </span> </div>
                                             </td>
-                                            <td width="40%">
+                                            <td>
                                                 <div class="py-2"> <span class="d-block text-muted">Référence de l'achat:</span> <span id="orderConfirmId"> </span> </div>
                                             </td>
                                             
-                                            <td width="40%">
+                                            <td>
                                                 <div class="py-2"> <span class="d-block text-muted">Adresse de livraison:</span> <span id="address" > </span> </div>
                                             </td>
                                         </tr>
