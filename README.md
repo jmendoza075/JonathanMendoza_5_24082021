@@ -2,7 +2,7 @@
 
 ## OpenClassroooms Project 5
 
-> "Project 5 : Construisez un site e-commerce.
+> "Projet 5 : Construisez un site e-commerce.
 
 > This is "Project 5: Construisez un site e-commerce " as part for the Web Developper training course at OpenClassrooms.
 
